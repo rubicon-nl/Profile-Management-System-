@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.Endpoint.Info;
@@ -29,12 +31,14 @@ namespace ProfileService.Api
                    {
                        Version = "v1",
                        Title = "Profile Managment Gateway API",
-                       Description = "Contains [rpfile info of persons"
+                       Description = "Contains profile info of persons"
                    })
             );
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
-            services.AddDistributedTracing(Configuration);            
+            services.AddDistributedTracing(Configuration);
+      //      services.AddOcelot();
+        //    services.AddSwaggerForOcelot(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +61,8 @@ namespace ProfileService.Api
                 endpoints.MapControllers();
             });
 
+       //     app.UseOcelot();
+        //    app.UseSwaggerForOcelotUI(Configuration);
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

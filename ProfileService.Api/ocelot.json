@@ -1,0 +1,34 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "api/{everything}",
+      "DownstreamScheme": "https",
+      "ServiceName": "profile",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 32802
+        }
+      ],
+      "UpstreamPathTemplate": "/{everything}",
+      "SwaggerKey": "profile",
+      "UpstreamHttpMethod": [ "Post" ]
+    }      
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "profile",
+      "Config": [
+        {
+          "Name": "profile API",
+          "Version": "v1",
+          "Url": "http://localhost:32802/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:32802"
+  }
+}

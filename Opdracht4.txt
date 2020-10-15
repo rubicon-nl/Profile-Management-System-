@@ -1,0 +1,14 @@
+Nu gaan we ocelot toevoegen om te kijken of we de twee api's kunnen rerouten.
+Installeer package ocelot in de profile service api
+Voeg ocelot toe aan services (add) en configure (use) in startup.cs
+
+Voeg de json file config toe
+
+.ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                // Informs the app to use the ocelot.json file
+                config.AddJsonFile("ocelot.json");
+            })
+
+
+voeg het ocelot bestand toe als content met copy if newer
