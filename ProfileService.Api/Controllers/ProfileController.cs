@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ProfileService.Api.Dummy;
 using ProfileService.Api.ViewModels;
 
@@ -14,13 +15,19 @@ namespace ProfileService.Api.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-
+        private readonly ILogger<ProfileController> logger;
         private readonly List<Profile> profiles = new ProfileSampleData().Profiles;
+
+        public ProfileController(ILogger<ProfileController> logger)
+        {
+            this.logger = logger;
+        }
 
         // GET: api/<Profile>
         [HttpGet]
         public IEnumerable<Profile> Get()
         {
+            logger.LogInformation("Nice persons");
             return profiles;
         }
 

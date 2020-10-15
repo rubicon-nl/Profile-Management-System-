@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.Endpoint.Info;
+using Steeltoe.Management.Tracing;
 
 namespace ProfileService.Api
 {
@@ -33,7 +34,7 @@ namespace ProfileService.Api
             );
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
-            
+            services.AddDistributedTracing(Configuration);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

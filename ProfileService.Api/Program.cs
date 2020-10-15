@@ -18,6 +18,7 @@ namespace ProfileService.Api
                     webBuilder.UseStartup<Startup>();
                 })
                 .AddHealthActuator()
-                .AddInfoActuator();
+                .AddInfoActuator()
+                .AddLoggersActuator();
     }
 }
