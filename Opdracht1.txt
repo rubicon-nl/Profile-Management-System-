@@ -1,0 +1,9 @@
+Installeer SteelToe package Managment EndPointCore
+
+Voeg in de startup AddHealthActuator(configuation) toe aan services.
+
+Test of health actuor werkt door de web applicatie te starten en http get [web url]/acturator/health in postman uit te voeren (gebruikt postman)
+
+Out of de box er is een Disk space contributor, een rabit MQ Healt contributer, RedishHealthContributer en een RelationalHealthContributor. Maar je kan er ook zelf een schrijven.
+
+Zie voor meer info https://steeltoe.io/docs/3/management/health
