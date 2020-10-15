@@ -1,6 +1,6 @@
 Installeer SteelToe package Steeltoe.Management.CloudFoundryCore
 
-Voeg in de startup AddHealthActuator(Configuation) toe aan services.
+Voeg in de startup AddHealthActuator(Configuration) toe aan services.
 Voeg in program.cs AddHealthActuator() toe aan de host builder.
 
 Test of health actuor werkt door de web applicatie te starten:
