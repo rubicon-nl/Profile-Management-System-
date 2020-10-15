@@ -28,7 +28,7 @@ namespace ProfileService.Api
                    {
                        Version = "v1",
                        Title = "Profile Managment Gateway API",
-                       Description = "Contains [rpfile info of persons"
+                       Description = "Contains profile info of persons"
                    })
             );
             services.AddHealthActuator(Configuration);
@@ -59,7 +59,7 @@ namespace ProfileService.Api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                const string apiDescriptiveName = "Translation service";
+                const string apiDescriptiveName = "Profile service v1";
                 string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : " ..";
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", apiDescriptiveName);
             });
