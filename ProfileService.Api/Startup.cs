@@ -28,8 +28,8 @@ namespace ProfileService.Api
                    c.SwaggerDoc("v1", new OpenApiInfo
                    {
                        Version = "v1",
-                       Title = "Ocr Computer Vision service",
-                       Description = "Scan images services"
+                       Title = "Profile Managment Gateway API",
+                       Description = "Contains [rpfile info of persons"
                    })
             );
             services.AddHealthActuator(Configuration);
