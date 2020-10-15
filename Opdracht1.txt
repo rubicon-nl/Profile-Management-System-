@@ -1,9 +1,10 @@
 Installeer SteelToe package Steeltoe.Management.CloudFoundryCore
 
 Voeg in de startup AddHealthActuator(Configuation) toe aan services.
+Voeg in program.cs AddHealthActuator() toe aan de host builder.
 
-Test of health actuor werkt door de web applicatie te starten en http get [web url]/acturator/health in postman uit te voeren (gebruikt postman)
-
-Out of de box er is een Disk space contributor, een rabit MQ Healt contributer, RedishHealthContributer en een RelationalHealthContributor. Maar je kan er ook zelf een schrijven.
+Test of health actuor werkt door de web applicatie te starten:
+Check met postman of browser: 
+Postman http get [web url]/actuator/health in postman uit te voeren (let op ssl verificatie uitzetten)
 
 Zie voor meer info https://steeltoe.io/docs/3/management/health
