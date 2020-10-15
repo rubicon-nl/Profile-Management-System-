@@ -1,6 +1,6 @@
-Installeer SteelToe package Steeltoe.Management.EndpointCore
+Installeer SteelToe package Steeltoe.Management.CloudFoundryCore
 
-Voeg in de startup AddHealthActuator(configuation) toe aan services.
+Voeg in de startup AddHealthActuator(Configuation) toe aan services.
 
 Test of health actuor werkt door de web applicatie te starten en http get [web url]/acturator/health in postman uit te voeren (gebruikt postman)
 
