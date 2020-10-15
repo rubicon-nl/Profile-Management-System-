@@ -16,6 +16,8 @@ namespace ProfileService.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).AddHealthActuator();
+                })
+                .AddHealthActuator()
+                .AddInfoActuator();
     }
 }

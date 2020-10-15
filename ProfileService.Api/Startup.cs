@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Management.Endpoint;
 using Steeltoe.Management.Endpoint.Health;
+using Steeltoe.Management.Endpoint.Info;
 
 namespace ProfileService.Api
 {
@@ -31,6 +32,7 @@ namespace ProfileService.Api
                    })
             );
             services.AddHealthActuator(Configuration);
+            services.AddInfoActuator(Configuration);
             
         }
 
