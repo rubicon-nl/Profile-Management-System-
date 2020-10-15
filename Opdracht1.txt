@@ -1,4 +1,4 @@
-Installeer SteelToe package Managment EndPointCore
+Installeer SteelToe package Steeltoe.Management.EndpointCore
 
 Voeg in de startup AddHealthActuator(configuation) toe aan services.
 
