@@ -1,0 +1,6 @@
+Installeer Nuget Steeltoe.Management.TracingCore.
+Voeg AddDistributed tracing toe aan services en (hostbuilder).
+
+Voeg _logger.LogInformation("Nice persons) bij het ophalen van personen.
+Kijk in de output window van de api (Visual Studio output).
+Je ziet nu welke applicatie logt, span id (correlation id van de service) en de trace id (correlation id van geraakte services van het request).
