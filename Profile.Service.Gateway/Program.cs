@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Steeltoe.Management.Endpoint;
 
-namespace ProfileService.Api
+namespace Profile.Service.Gateway
 {
     public class Program
     {
@@ -13,11 +13,17 @@ namespace ProfileService.Api
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)          
+            Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostingContext, config) =>
+            {
+                // Informs the app to use the ocelot.json file
+                config.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
+            })
                 .ConfigureWebHostDefaults(webBuilder =>
-                {                   
-                    webBuilder.UseStartup<Startup>();                
-                })            
+                {
+                    webBuilder.UseStartup<Startup>();
+
+                })
                 .AddHealthActuator()
                 .AddInfoActuator()
                 .AddLoggersActuator();

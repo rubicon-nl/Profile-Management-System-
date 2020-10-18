@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProfileService.Api", "ProfileService.Api\ProfileService.Api.csproj", "{A3907175-37EC-4CED-B08E-B63D129736FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profile.Service.Api", "ProfileService.Api\Profile.Service.Api.csproj", "{A3907175-37EC-4CED-B08E-B63D129736FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Opdrachten", "Opdrachten", "{40D14DC0-1EC3-4C0C-8074-B4CD94541F27}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Opdrachten", "Opdrachten", 
 		Opdracht2.txt = Opdracht2.txt
 		Opdracht3.txt = Opdracht3.txt
 		Opdracht4.txt = Opdracht4.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profile.Service.Gateway", "Profile.Service.Gateway\Profile.Service.Gateway.csproj", "{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{DFAAFE35-4E82-4484-A5C0-53F98649F21E}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Global
@@ -23,6 +30,10 @@ Global
 		{A3907175-37EC-4CED-B08E-B63D129736FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3907175-37EC-4CED-B08E-B63D129736FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3907175-37EC-4CED-B08E-B63D129736FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

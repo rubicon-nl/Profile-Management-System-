@@ -39,8 +39,14 @@ namespace ProfileService.Api.Controllers
 
         // PUT api/<SkillsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Skill value)
+        public void Put(string id, [FromBody] Skill value)
         {
+            var currentSkill = skills.FirstOrDefault(f => f.StandarizedName.Equals(id, StringComparison.InvariantCultureIgnoreCase));
+
+            if (currentSkill != null)
+            {
+                skills.Remove(currentSkill);
+            }
             skills.Add(value);
         }
 
@@ -48,7 +54,8 @@ namespace ProfileService.Api.Controllers
         [HttpDelete("{id}")]
         public void Delete(string id)
         {
-            var skill = skills.Where(f => f.StandarizedName.Equals(id, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+            var skill = skills.FirstOrDefault(f => f.StandarizedName.Equals(id, StringComparison.InvariantCultureIgnoreCase));
+
             if (skill != null)
             {
                 skills.Remove(skill);

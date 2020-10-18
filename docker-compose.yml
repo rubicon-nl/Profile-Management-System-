@@ -1,0 +1,34 @@
+version: '3.5'
+
+networks:
+ localdev:
+  name: localdev
+
+services: 
+  profileapi:
+     image: profileapi
+     build:
+       context: ./ProfileService.Api
+       dockerfile: Dockerfile
+     networks:
+      - localdev
+     ports: 
+      - 5001:80
+     restart: 
+      always 
+
+  profilegateway:
+    image: profilegateway
+    build:
+      context: ./Profile.Service.Gateway
+      dockerfile: Dockerfile
+    depends_on:
+     - profileapi
+    networks:
+     - localdev
+    ports: 
+     - 5000:80
+    restart: 
+      always
+
+    

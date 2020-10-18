@@ -1,15 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Steeltoe.Management.Endpoint;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.Endpoint.Info;
 using Steeltoe.Management.Tracing;
 
-namespace ProfileService.Api
+namespace Profile.Service.Gateway
 {
     public class Startup
     {
@@ -24,20 +32,25 @@ namespace ProfileService.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddOcelot();
             services.AddSwaggerGen(c =>
-            {            
+            {
+                c.DocumentFilter<HideOcelotControllersFilter>();
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Profile Management Service API",
+                    Title = "Profile Management Gateway API",
                     Description = "Contains profile info of persons"
                 });
             });
 
+            services.AddSwaggerForOcelot(Configuration);
+
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
             services.AddDistributedTracing(Configuration);
-    
+     
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,20 +65,25 @@ namespace ProfileService.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();            
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
 
-            app.UseSwagger();
+            
+          app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                const string apiDescriptiveName = "Profile service v1";
+                const string apiDescriptiveName = "Profile gateway service v1";
                 string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : " ..";
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", apiDescriptiveName);
             });
+
+           
+           app.UseSwaggerForOcelotUI();
+            app.UseOcelot().Wait();
 
         }
     }
