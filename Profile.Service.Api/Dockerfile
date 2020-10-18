@@ -7,17 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["ProfileService.Api/ProfileService.Api.csproj", "ProfileService.Api/"]
-RUN dotnet restore "ProfileService.Api/ProfileService.Api.csproj"
+COPY ["Profile.Service.Api/Profile.Service.Api.csproj", "Profile.Service.Api/"]
+RUN dotnet restore "Profile.Service.Api/Profile.Service.Api.csproj"
 COPY . .
 WORKDIR "/src/ProfileService.Api"
-RUN dotnet build "ProfileService.Api.csproj" -c Release -o /app/build
+RUN dotnet build "Profile.Service.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ProfileService.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish "Profile.Service.Api.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ProfileService.Api.dll"]
+ENTRYPOINT ["dotnet", "Profile.Service.Api.dll"]
 
