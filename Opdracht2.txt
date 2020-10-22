@@ -1,3 +1,7 @@
+----------------------------------------------------------------
+Opdracht 2: Toevoegen van versie info van een container
+---------------------------------------------------------------
+
 Voeg in de startup AddInfoActuator(Configuration) toe aan services.
 Voeg in program.cs AddInfoActuator() toe aan de host builder.
 

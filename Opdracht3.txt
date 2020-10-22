@@ -1,3 +1,7 @@
+---------------------------------------
+Opdracht 3 Toevoegen van distributed tracing zodat je logging over meerde containers kan volgen.
+---------------------------------------
+
 Installeer Nuget Steeltoe.Management.TracingCore.
 Voeg AddDistributedTracing toe aan services in statup.cs.
 Voeg AddLoggersActuator toe aan de hostbuilder in program.cs
@@ -11,4 +15,4 @@ Start de api met swagger en voer de get method uit.
 Kijk in de output window van de api (Visual Studio output).
 Je ziet nu welke applicatie logt, span id (correlation id van de service) en de trace id (correlation id van geraakte services van het request).
 
-Als je code regel AddloggersActuator in rpogram uit comment. Dan wordt er ook gelogt, maar zonder deze info.
+Als je code regel AddloggersActuator in program uit comment. Dan wordt er ook gelogt, maar zonder deze info.
