@@ -1,4 +1,13 @@
 Ocelot toevoegen
+
+Ocelots primaire functionaliteit is rerouting van API gateway urls. 
+Door de vele microservices is het lastig om de vele services van containers te vinden en te gebruiken. 
+Ocelot kan de rerouten het voor de gateway of container makkelijker maken de api van de externe api's te benaderen door er een andere url route aan te koppelen.
+
+Ocelot biedt ook andere handige functionaliteiten. Een voobeeld is aggregatie van services. Hiermee kan je de rest api data van verschillende API calls aggrereren. 
+Andere functionaliteiten die Ocelot biedt zijn: caching, header transformation circuit breakers, service discovery tooling en nog veel meer.
+
+Opdracht
 ----------------------------------------------------------------------------------------
 Installeer package ocelot en MMLib.SwaggerForOcelot in de profile service gateway!
 
@@ -7,7 +16,8 @@ Voeg ocelot toe aan services (add) en configure (use) in startup.cs!
 
 Ocelot configuratie
 --------------------------------
-Voeg de ocelot.json file config toe!
+Voeg de ocelot.json file config toe! In de ocelot JSON kun je zien dat downstream de ophaal api is van de gateway en upstream is de reroute van de URL naar een eigen url.
+Hierdoor is de api van de container voor gateway betervoorspelbaar en makkelijker te benanderen. 
 
 Voeg het laden van deze
 .ConfigureAppConfiguration((hostingContext, config) =>
