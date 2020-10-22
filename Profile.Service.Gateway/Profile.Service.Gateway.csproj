@@ -18,11 +18,5 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="ocelot.json">
-      <CopyToOutputDirectory>d</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 
 </Project>

@@ -51,7 +51,8 @@ namespace ProfileService.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();            
+            app.UseAuthorization();
+            app.UseHttpsRedirection();
 
             app.UseEndpoints(endpoints =>
             {

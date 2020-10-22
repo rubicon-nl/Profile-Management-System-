@@ -25,7 +25,7 @@ namespace Profile.Service.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //  services.AddOcelot();
+            
             services.AddSwaggerGen(c =>
             {
                 c.DocumentFilter<HideOcelotControllersFilter>();
@@ -36,17 +36,10 @@ namespace Profile.Service.Gateway
                     Description = "Contains profile info of persons"
                 });
             });
-
-            //  services.AddSwaggerForOcelot(Configuration);
-            /*    services.AddHttpsRedirection(options =>
-                {
-                    options.HttpsPort = 443;
-                }); */
-
+            
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
             services.AddDistributedTracing(Configuration);
-
 
         }
 
@@ -58,7 +51,7 @@ namespace Profile.Service.Gateway
                 app.UseDeveloperExceptionPage();
             }
 
-            //   app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -77,11 +70,6 @@ namespace Profile.Service.Gateway
                 string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : " ..";
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", apiDescriptiveName);
             });
-
-
-            //  app.UseSwaggerForOcelotUI();
-            //   app.UseOcelot().Wait();
-
         }
     }
 }
