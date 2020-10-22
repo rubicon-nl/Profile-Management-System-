@@ -6,8 +6,8 @@
       "RouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5001
+          "Host": "profile.service.api",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/profile/",
@@ -22,13 +22,13 @@
         {
           "Name": "profile API",
           "Version": "v1",
-          "Url": "http://localhost:5001/swagger/v1/swagger.json"
+          "Url": "http://profile.service.api/swagger/v1/swagger.json"
         }
       ]
     } 
   ],
 
   "GlobalConfiguration": {
-    "BaseUrl": "http://127.0.0.1:5000"
+    "BaseUrl": "http://localhost:5000"
   }
 }

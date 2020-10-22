@@ -25,7 +25,7 @@ namespace Profile.Service.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //  services.AddOcelot();
+            services.AddOcelot();
             services.AddSwaggerGen(c =>
             {
                 c.DocumentFilter<HideOcelotControllersFilter>();
@@ -37,11 +37,11 @@ namespace Profile.Service.Gateway
                 });
             });
 
-            //  services.AddSwaggerForOcelot(Configuration);
-            /*    services.AddHttpsRedirection(options =>
+            services.AddSwaggerForOcelot(Configuration);
+            services.AddHttpsRedirection(options =>
                 {
                     options.HttpsPort = 443;
-                }); */
+                }); 
 
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
@@ -57,9 +57,7 @@ namespace Profile.Service.Gateway
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //   app.UseHttpsRedirection();
-
+                        
             app.UseRouting();
 
             app.UseAuthorization();
@@ -79,8 +77,8 @@ namespace Profile.Service.Gateway
             });
 
 
-            //  app.UseSwaggerForOcelotUI();
-            //   app.UseOcelot().Wait();
+            app.UseSwaggerForOcelotUI();
+            app.UseOcelot().Wait();
 
         }
     }

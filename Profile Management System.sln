@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Opdrachten", "Opdrachten", 
 		Opdracht2.txt = Opdracht2.txt
 		Opdracht3.txt = Opdracht3.txt
 		Opdracht4.txt = Opdracht4.txt
+		Opdracht5.txt = Opdracht5.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Profile.Service.Gateway", "Profile.Service.Gateway\Profile.Service.Gateway.csproj", "{DF287F2D-21D7-42AC-8E84-2B5E0E241C65}"
