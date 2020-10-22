@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Steeltoe.Management.Endpoint;
 
 namespace Profile.Service.Gateway
@@ -14,6 +15,12 @@ namespace Profile.Service.Gateway
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureLogging((hostingContext, logging) =>
+            {
+                logging
+                 .AddConfiguration(hostingContext.Configuration.GetSection("Logging"))
+                 .AddConsole();
+            })
             .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 // Informs the app to use the ocelot.json file

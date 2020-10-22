@@ -34,7 +34,8 @@ namespace ProfileService.Api
                 });
             });
 
-            services.AddHealthActuator(Configuration);
+            services.AddHealthActuator(Configuration);          
+
             services.AddInfoActuator(Configuration);
             services.AddDistributedTracing(Configuration);
     
@@ -47,8 +48,6 @@ namespace ProfileService.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

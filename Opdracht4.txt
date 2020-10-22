@@ -1,18 +1,90 @@
 Nu gaan we ocelot toevoegen om te kijken of we de twee api's kunnen rerouten.
 De ocelot configuratie gebruikt servicehost en portnr. Dit portnummer wijzigt iedere keer als je met docker opstart. 
+Check in de project files van beide project files of docker os op Linux os is inststeld.
+Voeg een docker orchestrator support project toe. Selecteer eerst het gateway project, kies add 'container orchestration support'  en vervolgens aan het api project
+commenteer in het bestand startup.cs van beide projecten app.UseHttpsRedirection(); uit
+verander in het gegenereerde docker-compose project de service url naar http://localhost:5000/swagger
+Zet de poorten 5000 voor het gateway project en 5001 voor het api project
+Als het goed is draaien beide projecten alleen onder het http protocol. Chrome wil graag "https" gebruiken, dus let er op de containers werken nu alleen onder http
+
+Verander de docker compose file
+-----------------------------------------------
+version: '3.4'
+
+services:
+  profile.service.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "5000:80"                
+    networks:
+      - local
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  profile.service.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "5001:80"           
+    networks:
+      - local
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+networks:
+ local:
+  driver: bridge
+--------------------------------------------
+
+Nu de docker containers vaste poorten hebben, ophetzelfde netwerk met bridge zitten en we via http communiceren kunnen de containers met elkaar praten. 
+
+Voeg in gateway het profile model toe (een verkorte versie van de Profile.Service.Api)
+
+------------------------------------------------
+ {
+        public Guid Id { get; set; }
+
+        public string GivenName { get; set; }
+        public string LastName { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+        public string Email { get; set; }
+    }
+---------------------------------------------------------------------
+
+Voeg een test controller toe in het gateway project om de vervinding met de andere container te testen
+
+ [Route("api/[controller]")]
+    [ApiController]
+    public class TestController : ControllerBase
+    {
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Profile>>> GetProfiles()
+        {
+            var client = new HttpClient();
+            string url = "http://profile.service.api/api/Profile";
+            var result = await client.GetAsync(url);
+            
+            return Ok(await result.Content.ReadFromJsonAsync<IEnumerable<Profile>>());
+        }
+    }
+
+-----------------------
+Start docker-compose en kijk of de testcontroller profiel data teruggeeft
 
 
-------------------------------------------------------
-Docker configuratie
-----------------------------------------------
-1 Poort fixed maken
-In het bestand lauchsettingsjson kan je
-Een fixed port vastleggen voor profile service api. Dit bestand vindt je in de map 'properties'. Leg ssl port 5001 vast voor de profile service api!
-En leg de docker ssl port 5000 vast voor de gateway
-Zet de build van de projecten op Docker
-In de properties van de solution zet multiple startup projects aan en selecteer 'start' voor api en gateway project.
-Zet in beide projecten de launch browser in de project eigenschappen van debug naar: {Scheme}://{ServiceHost}:{ServicePort}/swagger
 
+
+
+
+
+Ocelot toevoegen
+----------------------------------------------------------------------------------------
 Installeer package ocelot en MMLib.SwaggerForOcelot in de profile service gateway!
 
 Voeg ocelot toe aan services (add) en configure (use) in startup.cs!
@@ -37,4 +109,7 @@ Die gaan we eerst weg filteren.
 Maak een map swagger in Profile.Service.GateWay project en kopieer filteredapiexplorer.cs daarin
 Voeg in startup.cs aan swaggergen het volgende toe.
  c.DocumentFilter<HideOcelotControllersFilter>();
+
+ 
+ 
 

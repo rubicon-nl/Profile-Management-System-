@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
@@ -32,7 +25,7 @@ namespace Profile.Service.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddOcelot();
+            //  services.AddOcelot();
             services.AddSwaggerGen(c =>
             {
                 c.DocumentFilter<HideOcelotControllersFilter>();
@@ -44,12 +37,16 @@ namespace Profile.Service.Gateway
                 });
             });
 
-            services.AddSwaggerForOcelot(Configuration);
+            //  services.AddSwaggerForOcelot(Configuration);
+            /*    services.AddHttpsRedirection(options =>
+                {
+                    options.HttpsPort = 443;
+                }); */
 
             services.AddHealthActuator(Configuration);
             services.AddInfoActuator(Configuration);
             services.AddDistributedTracing(Configuration);
-     
+
 
         }
 
@@ -61,7 +58,7 @@ namespace Profile.Service.Gateway
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //   app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -72,8 +69,8 @@ namespace Profile.Service.Gateway
                 endpoints.MapControllers();
             });
 
-            
-          app.UseSwagger();
+
+            app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 const string apiDescriptiveName = "Profile gateway service v1";
@@ -81,9 +78,9 @@ namespace Profile.Service.Gateway
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", apiDescriptiveName);
             });
 
-           
-           app.UseSwaggerForOcelotUI();
-            app.UseOcelot().Wait();
+
+            //  app.UseSwaggerForOcelotUI();
+            //   app.UseOcelot().Wait();
 
         }
     }
