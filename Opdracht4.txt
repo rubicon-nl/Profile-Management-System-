@@ -77,4 +77,5 @@ Voeg een test controller toe in het gateway project om de vervinding met de ande
     }
 
 -----------------------
-Start docker-compose en kijk of de testcontroller profiel data teruggeeft
+Start docker-compose en kijk of de testcontroller profiel data teruggeeft. Verder neem notitie van de url die naam is van de container die wordt aangesproken. 
+De browser kan met de containers praten via de localhost, maar containers onderling kunnen dat alleen via de image.
