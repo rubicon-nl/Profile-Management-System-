@@ -1,3 +1,17 @@
+
+Steel Toe biedt vele functionaliteiten. Een paar gaan we via opdrachten implementeren. 
+Opdracht:
+1 Toevoegen van de Health Actuatie die aangeeft of de service up en running is.
+2 Toevoegen van de InfoActuator die versie informatie over je containers weergeeft.
+3 Toevoegen van Distributed Tracing
+
+In opdracht 4 gaan we docker containers met elkaar laten communiceren. Ook wel Docker Container Orchestration genoemd
+In opdracht 5 gaan we Ocelot als API gateway implementeren.
+
+--------------------------------------------
+Opdracht 1
+--------------------------------------------
+
 Installeer SteelToe package Steeltoe.Management.CloudFoundryCore
 
 Voeg in de startup AddHealthActuator(Configuration) toe aan services.
