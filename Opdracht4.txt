@@ -1,5 +1,14 @@
-Nu gaan we ocelot toevoegen om te kijken of we de twee api's kunnen rerouten.
-De ocelot configuratie gebruikt servicehost en portnr. Dit portnummer wijzigt iedere keer als je met docker opstart. 
+Docker containers orchestration
+
+Als je docker containers met elkaar wil laten praten dan moet je hier wel wat voor doen. Als je een web (api) project start kan je er voor kiezen om deze via een docker container te laten draaien.
+Aangezien windows containers door Microsoft zelf worden afgeraden, kies je altijd (99%) voor Linux containers.
+
+In deze opdracht ga je containers orchestreren. Je laat containers met elkaar praten.
+
+--------------------------------------------------------------------------
+Opdracht 4
+--------------------------------------------------------------------------
+
 Check in de project files van beide project files of docker os op Linux os is inststeld.
 Voeg een docker orchestrator support project toe. Selecteer eerst het gateway project, kies add 'container orchestration support'  en vervolgens aan het api project
 commenteer in het bestand startup.cs van beide projecten app.UseHttpsRedirection(); uit
