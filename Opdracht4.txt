@@ -45,7 +45,9 @@ Nu de docker containers vaste poorten hebben, ophetzelfde netwerk met bridge zit
 Voeg in gateway het profile model toe (een verkorte versie van de Profile.Service.Api)
 
 ------------------------------------------------
- {
+ public class Profile
+    {
+ 
         public Guid Id { get; set; }
 
         public string GivenName { get; set; }
