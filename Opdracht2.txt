@@ -1,5 +1,5 @@
 Voeg in de startup AddInfoActuator(Configuration) toe aan services.
-Voeg in program.cs AddHInfoActuator() toe aan de host builder.
+Voeg in program.cs AddInfoActuator() toe aan de host builder.
 
 Test of health actuator werkt door de web applicatie te starten:
 Check met postman of browser: 
