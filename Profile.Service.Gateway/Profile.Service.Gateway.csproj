@@ -9,19 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
-    <PackageReference Include="MMLib.SwaggerForOcelot" Version="2.6.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Ocelot" Version="16.0.1" />
     <PackageReference Include="Steeltoe.Management.EndpointCore" Version="3.0.1" />
     <PackageReference Include="Steeltoe.Management.TracingCore" Version="3.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="ocelot.json">
-      <CopyToOutputDirectory>d</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 

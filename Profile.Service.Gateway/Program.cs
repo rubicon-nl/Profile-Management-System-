@@ -20,12 +20,7 @@ namespace Profile.Service.Gateway
                     logging
                      .AddConfiguration(hostingContext.Configuration.GetSection("Logging"))
                      .AddConsole();
-                })
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    // Informs the app to use the ocelot.json file
-                    config.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-                })
+                })             
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

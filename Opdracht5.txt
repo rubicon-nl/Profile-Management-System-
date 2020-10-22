@@ -12,10 +12,10 @@ Opdracht
 Installeer package ocelot en MMLib.SwaggerForOcelot in de profile service gateway!
 
 Voeg ocelot toe aan services (add) en configure (use) in startup.cs!
----------------------------------------------
+----------------------------------------------------------------------------------------
 
 Ocelot configuratie
---------------------------------
+----------------------------------------------------------------------------------------
 Voeg de ocelot.json file config toe! In de ocelot JSON kun je zien dat downstream de ophaal api is van de gateway en upstream is de reroute van de URL naar een eigen url.
 Hierdoor is de api van de container voor gateway betervoorspelbaar en makkelijker te benanderen. 
 
@@ -29,13 +29,16 @@ Voeg het laden van deze
 
 Voeg het ocelot bestand toe als content met copy if newer
 Voeg Add in configure services en Use ocelot toe in configure van startup.cs
+
 Als je nu de gateway api in docker start zie je op de swagger pagina twee extra api's die daar niet horen.
 Die gaan we eerst weg filteren.
 
 Maak een map swagger in Profile.Service.GateWay project en kopieer filteredapiexplorer.cs daarin
 Voeg in startup.cs aan swaggergen het volgende toe.
  c.DocumentFilter<HideOcelotControllersFilter>();
-
+  
  
- 
 
+ ------------------------------------------------------------------------------------
+ De oplossing van opdrachten 1 - 5 is te vinden in branche einde
+ ------------------------------------------------------------------------------------

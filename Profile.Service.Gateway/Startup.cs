@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
 using Steeltoe.Management.Endpoint.Health;
 using Steeltoe.Management.Endpoint.Info;
 using Steeltoe.Management.Tracing;
@@ -24,11 +22,9 @@ namespace Profile.Service.Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddOcelot();
+            services.AddControllers();            
             services.AddSwaggerGen(c =>
-            {
-                c.DocumentFilter<HideOcelotControllersFilter>();
+            {                
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -37,7 +33,6 @@ namespace Profile.Service.Gateway
                 });
             });
 
-            services.AddSwaggerForOcelot(Configuration);
             services.AddHttpsRedirection(options =>
                 {
                     options.HttpsPort = 443;
@@ -67,7 +62,6 @@ namespace Profile.Service.Gateway
                 endpoints.MapControllers();
             });
 
-
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -75,11 +69,6 @@ namespace Profile.Service.Gateway
                 string swaggerJsonBasePath = string.IsNullOrWhiteSpace(c.RoutePrefix) ? "." : " ..";
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", apiDescriptiveName);
             });
-
-
-            app.UseSwaggerForOcelotUI();
-            app.UseOcelot().Wait();
-
         }
     }
 }
