@@ -33,7 +33,6 @@ Voeg Add in configure services en Use ocelot toe in configure van startup.cs
 Als je nu de gateway api in docker start zie je op de swagger pagina twee extra api's die daar niet horen.
 Die gaan we eerst weg filteren.
 
-Maak een map swagger in Profile.Service.GateWay project en kopieer filteredapiexplorer.cs daarin
 Voeg in startup.cs aan swaggergen het volgende toe.
  c.DocumentFilter<HideOcelotControllersFilter>();
   
