@@ -9,9 +9,9 @@ Andere functionaliteiten die Ocelot biedt zijn: caching, header transformation c
 
 Opdracht
 ----------------------------------------------------------------------------------------
-Installeer package ocelot en MMLib.SwaggerForOcelot in de profile service gateway!
+Stap 1: Installeer package ocelot en MMLib.SwaggerForOcelot in de profile service gateway!
 
-Voeg ocelot toe aan services (add) en configure (use) in startup.cs!
+Stap 2: Voeg ocelot toe aan services (AddOcelot() en AddSwaggerForOcelot) en configure (UseOcelost(Configuration) en UseSwaggerForOcelotUI(Configuration)) in startup.cs!
 ----------------------------------------------------------------------------------------
 
 Ocelot configuratie
@@ -19,21 +19,21 @@ Ocelot configuratie
 Voeg de ocelot.json file config toe! In de ocelot JSON kun je zien dat downstream de ophaal api is van de gateway en upstream is de reroute van de URL naar een eigen url.
 Hierdoor is de api van de container voor gateway betervoorspelbaar en makkelijker te benanderen. 
 
-Voeg het laden van deze
-.ConfigureAppConfiguration((hostingContext, config) =>
+Stap 3: Voeg het laden van de ocelot.json toe aan de HostBuilder in Program.cs:
+            .ConfigureAppConfiguration((hostingContext, config) =>
             {
                 // Informs the app to use the ocelot.json file
                 config.AddJsonFile("ocelot.json", optional:false, reloadOnChange: true);
             })
 
 
-Voeg het ocelot bestand toe als content met copy if newer
-Voeg Add in configure services en Use ocelot toe in configure van startup.cs
+Stap 4: Voeg het ocelot bestand toe als content met copy if newer
 
-Als je nu de gateway api in docker start zie je op de swagger pagina twee extra api's die daar niet horen.
+Stap 5: Als je nu de gateway api in docker start (stel docker-compose eerst in als startup project!) zie je op de swagger pagina twee extra api's (FileController) die daar niet horen omdat dit van Ocelot zelf is.
 Die gaan we eerst weg filteren.
 
-Voeg in startup.cs aan swaggergen het volgende toe.
+Er is al een filter aanwezig hiervoor, deze moet toegevoegd worden.
+Stap 6: Voeg in startup.cs aan swaggergen het volgende toe.
  c.DocumentFilter<HideOcelotControllersFilter>();
   
  
