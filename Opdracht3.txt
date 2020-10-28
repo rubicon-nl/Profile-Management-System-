@@ -10,6 +10,15 @@ In profile controller voeg toe
 eigenschap: ILogger<ProfileController> logger. Dit is een class field.
 Maak een constructor en initier de logger hierbij.
 
+Voeg in program.cs het volgende toe aan Host.CreateDefaultBuilder(args)
+
+ .ConfigureLogging((hostingContext, logging) =>
+            {
+                logging
+                 .AddConfiguration(hostingContext.Configuration.GetSection("Logging"))
+                 .AddConsole();
+            })
+
 Voeg een logging logger.LogInformation("Nice persons) bij het ophalen van personen (get method).
 
 Start de api met swagger en voer de get method uit.
