@@ -9,14 +9,14 @@ In deze opdracht ga je containers orchestreren. Je laat containers met elkaar pr
 Opdracht 4
 --------------------------------------------------------------------------
 
-Check in de project files van beide project files of docker os op Linux os is inststeld.
-Voeg een docker orchestrator support project toe. Selecteer eerst het gateway project, kies add 'container orchestration support'  en vervolgens aan het api project
+Stap 1: Check in de project files van beide project files of docker os op Linux os is inststeld.
+Stap 2: Voeg een docker orchestrator support project toe. Selecteer eerst het gateway project, kies add 'container orchestration support'  en vervolgens aan het api project
 commenteer in het bestand startup.cs van beide projecten app.UseHttpsRedirection(); uit
 verander in het gegenereerde docker-compose project de service url naar http://localhost:5000/swagger
-Zet de poorten 5000 voor het gateway project en 5001 voor het api project
+Stap 3: Zet de poorten 5000 voor het gateway project en 5001 voor het api project
 Als het goed is draaien beide projecten alleen onder het http protocol. Chrome wil graag "https" gebruiken, dus let er op de containers werken nu alleen onder http
 
-Verander de docker compose file
+Stap 4: Verander de docker compose file
 -----------------------------------------------
 version: '3.4'
 
@@ -51,7 +51,7 @@ networks:
 
 Nu de docker containers vaste poorten hebben, ophetzelfde netwerk met bridge zitten en we via http communiceren kunnen de containers met elkaar praten. 
 
-Voeg in gateway het profile model toe (een verkorte versie van de Profile.Service.Api)
+Stap 5: Voeg in gateway het profile model toe (een verkorte versie van de Profile.Service.Api)
 
 ------------------------------------------------
  public class Profile
@@ -68,7 +68,7 @@ Voeg in gateway het profile model toe (een verkorte versie van de Profile.Servic
     }
 ---------------------------------------------------------------------
 
-Voeg een test controller toe in het gateway project om de vervinding met de andere container te testen
+Stap 6: Voeg een test controller toe in het gateway project om de vervinding met de andere container te testen
 
  [Route("api/[controller]")]
     [ApiController]
@@ -86,5 +86,5 @@ Voeg een test controller toe in het gateway project om de vervinding met de ande
     }
 
 -----------------------
-Start docker-compose en kijk of de testcontroller profiel data teruggeeft. Verder neem notitie van de url die naam is van de container die wordt aangesproken. 
+Stap 7: Start docker-compose en kijk of de testcontroller profiel data teruggeeft. Verder neem notitie van de url die naam is van de container die wordt aangesproken. 
 De browser kan met de containers praten via de localhost, maar containers onderling kunnen dat alleen via de image.
