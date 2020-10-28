@@ -7,8 +7,9 @@ Voeg AddDistributedTracing toe aan services in statup.cs.
 Voeg AddLoggersActuator toe aan de hostbuilder in program.cs
 
 In profile controller voeg toe 
-eigenschap: ILogger<WeatherForecastController> logger
-voeg de logger toe aan constructor ProfileController
+eigenschap: ILogger<ProfileController> logger. Dit is een class field.
+Maak een constructor en initier de logger hierbij.
+
 Voeg een logging logger.LogInformation("Nice persons) bij het ophalen van personen (get method).
 
 Start de api met swagger en voer de get method uit.
